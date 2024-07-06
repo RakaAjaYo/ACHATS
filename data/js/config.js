@@ -1,11 +1,11 @@
 
 export const firebaseConfig = {
-    apiKey: "AIzaSyBSUG08nPQyjvx8cCskV2CHqF_ILvxjU98",
-    authDomain: "chats-app-12.firebaseapp.com",
-    databaseURL: "https://chats-app-12-default-rtdb.firebaseio.com",
-    projectId: "chats-app-12",
-    storageBucket: "chats-app-12.appspot.com",
-    messagingSenderId: "670073879651",
-    appId: "1:670073879651:web:d4422fab5ca4c3fe478c56",
-    measurementId: "G-ZTYYFM7HPJ"
+  apiKey: "AIzaSyAr6x-Dt7VurVzA9VZWUBr7v39AvtE2jVo",
+  authDomain: "axoo-id.firebaseapp.com",
+  databaseURL: "https://axoo-id-default-rtdb.firebaseio.com",
+  projectId: "axoo-id",
+  storageBucket: "axoo-id.appspot.com",
+  messagingSenderId: "543674574805",
+  appId: "1:543674574805:web:e08d7e6f3050b0e479ff5c",
+  measurementId: "G-YM5M7M0N1H"
 };
