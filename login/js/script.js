@@ -1,4 +1,3 @@
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, getRedirectResult, GoogleAuthProvider, GithubAuthProvider, FacebookAuthProvider, signInWithRedirect, sendSignInLinkToEmail } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
 import { firebaseConfig } from '../../data/js/config.js';
