@@ -5,20 +5,89 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>KIRIMIN</title>
-    <link rel="stylesheet" href="./data/css/default.css"/>
-    <link rel="stylesheet" href="./data/helper/popup/popup.css"/>
-    <link rel="stylesheet" href="./data/css/styles.css"/>
+    <link rel="stylesheet" href="https://kirimin.devanka.id/data/css/default.csss"/>
+    <link rel="stylesheet" href="https://kirimin.devanka.id/data/helper/popup/popup.css"/>
+    <link rel="stylesheet" href="https://kirimin.devanka.id/data/css/styles.css"/>
 </head>
 <body>
+    <header>
+        <h1 class="title">
+            <img src="https://kirimin.devanka.id/data/img/kirimin_chat_lighter.png" width="45" alt="Kirimin Logo" />
+            <span>AXOO ID</span>
+        </h1>
+        <div class="menu">
+            <a href="#tools" class="scroll">INFO</a>
+            <a href="./login/" class="login">LOGIN</a>
+        </div>
+    </header>
     <main>
         <article class="title-screen">
+            <div class="hero">
+                <img width="125" src="https://kirimin.devanka.id/data/img/kirimin_logo.png" alt="">
+                <div class="spinning">
+                    <i class="fa-duotone fa-microphone-lines"></i>
+                    <i class="fa-duotone fa-paper-plane"></i>
+                    <i class="fa-duotone fa-camera-retro"></i>
+                    <i class="fa-duotone fa-comments"></i>
+                    <i class="fa-duotone fa-bug"></i>
+                    <i class="fa-duotone fa-file"></i>
+                    <i class="fa-duotone fa-earth-asia"></i>
+                    <i class="fa-duotone fa-robot"></i>
+                </div>
+            </div>
             <div class="description">
-                <h1>AXOO APP</h1>
-                <p>Website for chatting with friends all over the world</p>
-                <p>Come on, chat with your friends all over the world </p>
+                <h1>AXOO ID</h1>
+                <p>Kini obrolan akan jauh lebih menyenangkan apabila sambil menghadapi <b>Error 503</b>.. Yuk digas saja!</p>
                 <a class="login" href="./login/">LOGIN</a>
             </div>
+            <footer class="wave">
+                <img src="https://kirimin.devanka.id/data/img/wave.svg" alt="aaa">
+            </footer>
         </article>
+
+        <article class="content" id="tools">
+          <h1 class="content-title">INFO</h1>
+           <div class="description">
+                    <p>TERIMAKASIH SUDAH MAU MENGGUNAKAN WEBSITE/APLIKASI INI</p>
+                    <p>YOUTUBE KAMI : </p><a href="https://youtube.com/@ArthurXyzx">CLICK DISINI</a>
+                </div>
+
+        </article>
+        <footer id="footer">
+       <p>SELAMAT MENGGUNAKAN</p>
+        </footer>
     </main>
+
+    <script src="https://kirimin.devanka.id/data/helper/popup/popup.js"></script>
+
+    <script>
+
+        const main = document.querySelector('main');
+        const header = document.querySelector('header');
+        let scrolledDown = false;
+        main.addEventListener('scroll', function() {
+            if(!header.classList.contains('scrolled')) {
+                header.classList.add('scrolled')
+            }
+            if(main.scrollTop == 0 && header.classList.contains('scrolled')) {
+                header.classList.remove('scrolled');
+            }
+            if(main.scrollTop >= main.clientHeight / 2 && scrolledDown === false) {
+                popup.confirm({
+                    msg: 'Apa Kamu Seorang Programmer?<br/>atau suka dengan hal yang berbau programming?',
+                    yes: 'Iya, Betul',
+                    no: 'Tidak',
+                    onyes: () => {
+                        document.body.classList.add('dark');
+                        popup.alert({msg: 'Programmer harus BG hitam!<br/>Shyap!',type:'blue'});
+                    },
+                    type:'blue'
+                });
+                scrolledDown = true;
+
+            }
+        });
+
+    </script>
 </body>
 </html>
