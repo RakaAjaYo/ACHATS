@@ -25,18 +25,6 @@ import { firebaseConfig } from '../../data/js/config.js';
             </div>
             <br/>
             <div class="group">
-                <button class="c-red" id="google-login">
-                    <i class="fa-brands fa-google"></i>
-                    <p>Google</p>
-                </button>
-                <button class="c-white" id="github-login">
-                    <i class="fa-brands fa-github"></i>
-                    <p>GitHub</p>
-                </button>
-                <button class="c-blue" id="facebook-login">
-                    <i class="fa-brands fa-facebook-f"></i>
-                    <p>Facebook</p>
-                </button>
                 <button class="c-green" id="email-form">
                     <i class="fa-regular fa-envelope"></i>
                     <p>Email</p>
@@ -51,13 +39,10 @@ import { firebaseConfig } from '../../data/js/config.js';
             loginCard();
         }
 
-        const google = card.querySelector('#google-login');
-        const github = card.querySelector('#github-login');
-        const facebook = card.querySelector('#facebook-login');
         const emailForm = card.querySelector(`#email-form`);
 
         const visibility = (clicked) => {
-            let providerAll = [google, github, facebook, emailForm];
+            let providerAll = [emailForm];
             providerAll.forEach((element) => {
                 if(clicked !== element) {
                     element.style.visibility = 'hidden';
@@ -71,27 +56,6 @@ import { firebaseConfig } from '../../data/js/config.js';
 
             clicked.querySelector('p').innerHTML = loading;
             card.querySelector('h1').innerHTML = lang.loading;
-        }
-
-        google.onclick = () => {
-            visibility(google);
-            const provider = new GoogleAuthProvider();
-            signInWithRedirect(auth, provider);
-        }
-        github.onclick = () => {
-            visibility(github);
-            const provider = new GithubAuthProvider();
-            signInWithRedirect(auth, provider);
-        }
-        facebook.onclick = () => {
-            popup.confirm({
-                msg: 'We <b class="c-red">ARE NOT</b> recommending you to login with Facebook since Meta <b class="c-red">DOES NOT</b> care about privacy.<br/>Still want to continue!?',
-                onyes: () => {
-                    const provider = new FacebookAuthProvider();
-                    signInWithRedirect(auth, provider);
-                    visibility(facebook);
-                }
-            })
         }
 
         emailForm.addEventListener('click', () => transition(card, emailCard));
