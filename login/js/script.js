@@ -24,10 +24,9 @@ import { firebaseConfig } from '../../data/js/config.js';
                 </select>
             </div>
             <br/>
-            <div class="group">
-                <button class="c-red" id="google-login">
-                    <i class="fa-brands fa-google"></i>
-                    <p>Google</p>
+            <div class="group"><button class="c-green" id="email-form">
+                    <i class="fa-regular fa-envelope"></i>
+                    <p>Email</p>
                 </button>
             </div>
         `);
@@ -39,33 +38,80 @@ import { firebaseConfig } from '../../data/js/config.js';
             loginCard();
         }
 
-        const google = card.querySelector('#google-login');
+        const emailForm = card.querySelector(`#email-form`);
 
-        const visibility = (clicked) => {
-            let providerAll = [google];
-            providerAll.forEach((element) => {
-                if(clicked !== element) {
-                    element.style.visibility = 'hidden';
-                }
-            });
-
-            card.querySelector('#changeLang').style.visibility = 'hidden';
-
-            let loading = ['Loading...'];
-            loading = loading[Math.floor(Math.random() * loading.length)];
-
-            clicked.querySelector('p').innerHTML = loading;
-            card.querySelector('h1').innerHTML = lang.loading;
-        }
-
-        google.onclick = () => {
-            visibility(google);
-            const provider = new GoogleAuthProvider();
-            signInWithRedirect(auth, provider);
-        }
+        emailForm.addEventListener('click', () => transition(card, emailCard));
 
         container.innerHTML = '';
         container.appendChild(card);
+    }
+    
+    const emailCard = () => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.innerHTML = (`
+            <h1>${lang.login}</h1>
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" placeholder="${lang.your_email}.." maxlength="360"/>
+            <div class="group-flex">
+                <button id="back-to-login" class="c-red">${lang.cancel}</button>
+                <button id="email-login" class="c-green">${lang.send}</button>
+            </div>
+        `);
+        
+        const loginForm = card.querySelector(`#back-to-login`);
+        loginForm.addEventListener('click', () => transition(card, loginCard));
+
+        const input = card.querySelector(`#email`);
+        const send = card.querySelector(`#email-login`);
+        send.onclick = () => {
+            emailHandler(input.value);
+            send.innerHTML = `${lang.checking}...`;
+            input.style.visibility = 'hidden';
+            loginForm.style.visibility = 'hidden';
+        };
+
+        const emailHandler = (email) => {
+            const actionCodeSettings = {
+                url: `${window.location.origin}/login/email-verification.html`,
+                handleCodeInApp: true,
+            };
+            sendSignInLinkToEmail(auth, email, actionCodeSettings)
+            .then(() => {
+                window.localStorage.setItem('kiriminEmailSignIn', email);
+                popup.alert({
+                    msg: lang.signin_link,
+                    type: "blue",
+                    onyes: () => transition(card, almostCard)
+                });
+            })
+            .catch((error) => {
+                popup.alert({msg: error, onyes: () => transition(card, emailCard)});
+            });
+        }
+
+        container.appendChild(card);
+        input.focus();
+    }
+
+    const almostCard = () => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.innerHTML = (`
+            <h1>${lang.almost}!</h1>
+            <p><i>${lang.we_sent}</i></p>
+            <p class="c-yellow"><i>${lang.do_not_close}</i></p>
+        `);
+
+        container.appendChild(card);
+    }
+
+    const transition = (prevCard, nextCard) => {
+        prevCard.classList.add('deleted');
+        setTimeout(() => {
+            container.removeChild(prevCard);
+            nextCard();
+        }, 200);
     }
 
     const langCheker = async() => {
