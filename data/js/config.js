@@ -1,10 +1,11 @@
 
 export const firebaseConfig = {
-    apiKey: "AIzaSyCG7IgzWSg1LVutjQYW0oym80qTVyBw0IE",
-    authDomain: "dvnkz-chat-app.firebaseapp.com",
-    databaseURL: "https://dvnkz-chat-app-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "dvnkz-chat-app",
-    storageBucket: "dvnkz-chat-app.appspot.com",
-    messagingSenderId: "255725323807",
-    appId: "1:255725323807:web:2418f1c88ad0b8b548772a"
+    apiKey: "AIzaSyBSUG08nPQyjvx8cCskV2CHqF_ILvxjU98",
+    authDomain: "chats-app-12.firebaseapp.com",
+    databaseURL: "https://chats-app-12-default-rtdb.firebaseio.com",
+    projectId: "chats-app-12",
+    storageBucket: "chats-app-12.appspot.com",
+    messagingSenderId: "670073879651",
+    appId: "1:670073879651:web:d4422fab5ca4c3fe478c56",
+    measurementId: "G-ZTYYFM7HPJ"
 };
