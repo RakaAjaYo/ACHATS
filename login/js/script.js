@@ -25,10 +25,7 @@ import { firebaseConfig } from '../../data/js/config.js';
             </div>
             <br/>
             <div class="group">
-                <button class="c-green" id="email-form">
-                    <i class="fa-regular fa-envelope"></i>
-                    <p>Email</p>
-                </button>
+                <button class="btn-1 chooseEmail"><i class="far fa-envelope"></i>Email</button>
             </div>
         `);
 
@@ -39,79 +36,92 @@ import { firebaseConfig } from '../../data/js/config.js';
             loginCard();
         }
 
-        const emailForm = card.querySelector(`#email-form`);
-
-        const visibility = (clicked) => {
-            let providerAll = [emailForm];
-            providerAll.forEach((element) => {
-                if(clicked !== element) {
-                    element.style.visibility = 'hidden';
-                }
-            });
-
-            card.querySelector('#changeLang').style.visibility = 'hidden';
-
-            let loading = ['Okay Let\'s Go', 'Wise Choice', 'Wkwkwk', 'Not Bad!', 'Ur good to go!'];
-            loading = loading[Math.floor(Math.random() * loading.length)];
-
-            clicked.querySelector('p').innerHTML = loading;
-            card.querySelector('h1').innerHTML = lang.loading;
-        }
-
-        emailForm.addEventListener('click', () => transition(card, emailCard));
-
-        container.innerHTML = '';
-        container.appendChild(card);
+        this.chooseEmail = this.element.querySelector(".chooseEmail");
+        this.chooseEmail.onclick = () => this.emailElement(this.element);
     }
-    
-    const emailCard = () => {
-        const card = document.createElement('div');
-        card.classList.add('card');
-        card.innerHTML = (`
-            <h1>${lang.login}</h1>
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="email" placeholder="${lang.your_email}.." maxlength="360"/>
-            <div class="group-flex">
-                <button id="back-to-login" class="c-red">${lang.cancel}</button>
-                <button id="email-login" class="c-green">${lang.send}</button>
+
+    emailElement(chooser) {
+        // DIV BARU
+        this.mailElement = document.createElement("div");
+        this.mailElement.classList.add("Landing");
+        this.mailElement.innerHTML = (`
+            <div class="Title">KIRIMIN</div>
+            <div class="Desc">Login Email</div>
+            <div class="Tombol">
+                <input type="text" placeholder="Email" data-inpt="email" required />
+                <input type="text" placeholder="Password" data-inpt="password" required />
+                <button class="btn-1 loginEmail">Login</button>
+            </div>
+            <div class="reg">
+                Belum Punya Akun? <span>Buat Sekarang</span>
             </div>
         `);
-        
-        const loginForm = card.querySelector(`#back-to-login`);
-        loginForm.addEventListener('click', () => transition(card, loginCard));
+        const email = this.mailElement.querySelector(`.Tombol [data-inpt="email"]`);
+        const password = this.mailElement.querySelector(`.Tombol [data-inpt="password"]`);
 
-        const input = card.querySelector(`#email`);
-        const send = card.querySelector(`#email-login`);
-        send.onclick = () => {
-            emailHandler(input.value);
-            send.innerHTML = `${lang.checking}...`;
-            input.style.visibility = 'hidden';
-            loginForm.style.visibility = 'hidden';
-        };
-
-        const emailHandler = (email) => {
-            const actionCodeSettings = {
-                url: `${window.location.origin}/login/email-verification.html`,
-                handleCodeInApp: true,
-            };
-            sendSignInLinkToEmail(auth, email, actionCodeSettings)
-            .then(() => {
-                window.localStorage.setItem('kiriminEmailSignIn', email);
-                popup.alert({
-                    msg: lang.signin_link,
-                    type: "blue",
-                    onyes: () => transition(card, almostCard)
-                });
-            })
-            .catch((error) => {
-                popup.alert({msg: error, onyes: () => transition(card, emailCard)});
-            });
-        }
-
-        container.appendChild(card);
-        input.focus();
+        this.mailElement.querySelector(".reg span").onclick = () => this.registerElement(this.mailElement); // LISTENER KALO KLIK BUAT AKUN
+        this.mailElement.querySelector('.loginEmail').onclick = () => this.login(email, password); // LISTENER KALO KLIK LOGIN
+        chooser.remove(); // HAPUS ELEMENT SEBELUMNYA
+        this.container.appendChild(this.mailElement); // MASUKIN KE CONTAINER
     }
 
+    login(email, password) {
+        // LOGIN HANDLER DENGAN EMAIL DAN PASSWORD
+        auth.signInWithEmailAndPassword(email.value, password.value).catch((err) => Notipin.Alert({
+            msg: err.message,
+            mode: "dark"
+        })); // KALO ADA ERROR TAMPILKAN DI ALERT
+    }
+
+    registerElement(loginElement) {
+        // DIV BARU
+        this.regElement = document.createElement("div");
+        this.regElement.classList.add("Landing");
+        this.regElement.innerHTML = (`
+            <div class="Title">KIRIMIN</div>
+            <div class="Desc">Login Email</div>
+            <div class="Tombol">
+                <input type="text" placeholder="Email" data-inpt="email" required />
+                <input type="text" placeholder="Password" data-inpt="password" required />
+                <input type="text" placeholder="Konfirmasi Password" data-inpt="cPassword" required />
+                <button class="btn-1 registerEmail">Register</button>
+            </div>
+            <div class="reg">
+                Sudah Punya Akun? <span>Masuk Sekarang</span>
+            </div>
+        `);
+
+        const email = this.regElement.querySelector(`.Tombol [data-inpt="email"]`);
+        const password = this.regElement.querySelector(`.Tombol [data-inpt="password"]`);
+        const cPassword = this.regElement.querySelector(`.Tombol [data-inpt="cPassword"]`);
+
+        this.regElement.querySelector(".reg span").onclick = () => this.emailElement(this.regElement); // LISTENER KLIK MASUK AKUN
+        this.regElement.querySelector(".registerEmail").onclick = () => this.register(email, password, cPassword); // LISTENER KLIK REGISTER
+        loginElement.remove(); // HAPUS ELEMENT SEBELUMNYA
+        this.container.appendChild(this.regElement); // MASUKKIN KE CONTAINER
+    }
+
+    register(email, password, cPassword) {
+        if(email.value == '' || password.value == "" || cPassword.value == "") return Notipin.Alert({
+            msg: "Harap Isi Semua Bidang",
+            type: "danger",
+            mode: "dark"
+        }); // KALO ADA SALAH SATU YANG KOSONG AKAN ADA ALERT
+        if(password.value.length < 8) return Notipin.Alert({
+            msg: "Password Minimal 8 Karakter",
+            type: "danger",
+            mode: "dark"
+        }); // KALO PASSWORD KURANG DARI 8 KARAKTER AKAN ADA ALERT
+        if(password.value !== cPassword.value) return Notipin.Alert({
+            msg: "Konfirmasi Password Tidak Sesuai",
+            type: "danger",
+            mode: "dark"
+        }); // KALO KONFIRMASI PASSWORD TIDAK SESUAI(MATCH) MAKA ADA ALERT
+        auth.createUserWithEmailAndPassword(email.value, cPassword.value).catch((err) => Notipin.Alert({
+            msg: err.message,
+            mode: "dark"
+        })); // KALO ADA ERROR, TAMPILKAN DI ALERT
+    }
     const almostCard = () => {
         const card = document.createElement('div');
         card.classList.add('card');
