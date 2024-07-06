@@ -1,7 +1,7 @@
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAr6x-Dt7VurVzA9VZWUBr7v39AvtE2jVo",
-  authDomain: "axoo-id.firebaseapp.com",
+  authDomain: "axoo-id.web.app",
   databaseURL: "https://axoo-id-default-rtdb.firebaseio.com",
   projectId: "axoo-id",
   storageBucket: "axoo-id.appspot.com",
