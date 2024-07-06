@@ -1,11 +1,11 @@
 
 export const firebaseConfig = {
-    apiKey: "AIzaSyAnIeL1d7JiQ73C4phEFTlh3PwwNrNG9GA",
-    authDomain: "axoo-chat.firebaseapp.com",
-    databaseURL: "https://axoo-chat-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "axoo-chat",
-    storageBucket: "axoo-chat.appspot.com",
-    messagingSenderId: "702942255652",
-    appId: "1:702942255652:web:73e3f56c7ba02e567616b1",
-    measurementId: "G-THH15FVCL2"
+  apiKey: "AIzaSyA5fTNlsrYJO1AqtPj2j0BNL5GHShyPPKM",
+  authDomain: "apps-chat-worlds.firebaseapp.com",
+  databaseURL: "https://apps-chat-worlds-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "apps-chat-worlds",
+  storageBucket: "apps-chat-worlds.appspot.com",
+  messagingSenderId: "395735317936",
+  appId: "1:395735317936:web:40d5ff89ddbea60f082a75",
+  measurementId: "G-PJCW9P4HDX"
 };
