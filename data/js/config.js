@@ -1,11 +1,11 @@
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyA5fTNlsrYJO1AqtPj2j0BNL5GHShyPPKM",
-  authDomain: "apps-chat-worlds.firebaseapp.com",
-  databaseURL: "https://apps-chat-worlds-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "apps-chat-worlds",
-  storageBucket: "apps-chat-worlds.appspot.com",
-  messagingSenderId: "395735317936",
-  appId: "1:395735317936:web:40d5ff89ddbea60f082a75",
-  measurementId: "G-PJCW9P4HDX"
+  apiKey: "AIzaSyClyZlGq2uPc654QLyymVh2CTwcSjWC1Bo",
+  authDomain: "chat-app--world-chat.firebaseapp.com",
+  databaseURL: "https://chat-app--world-chat-default-rtdb.firebaseio.com",
+  projectId: "chat-app--world-chat",
+  storageBucket: "chat-app--world-chat.appspot.com",
+  messagingSenderId: "872704705411",
+  appId: "1:872704705411:web:3e2144383a15308edd2cb6",
+  measurementId: "G-C6LNBE4TG9"
 };
