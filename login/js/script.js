@@ -26,18 +26,6 @@ import { firebaseConfig } from '../../data/js/config.js';
             </div>
             <br/>
             <div class="group">
-                <button class="c-red" id="google-login">
-                    <i class="fa-brands fa-google"></i>
-                    <p>Google</p>
-                </button>
-                <button class="c-white" id="github-login">
-                    <i class="fa-brands fa-github"></i>
-                    <p>GitHub</p>
-                </button>
-                <button class="c-blue" id="facebook-login">
-                    <i class="fa-brands fa-facebook-f"></i>
-                    <p>Facebook</p>
-                </button>
                 <button class="c-green" id="email-form">
                     <i class="fa-regular fa-envelope"></i>
                     <p>Email</p>
