@@ -5,11 +5,11 @@ const popup = {
             max: 1,
             val: '',
             placeholder: 'Type Here..',
-            textarea: false,
-            nowrap: false,
+            textarea: true,
+            nowrap: true,
             yes: 'OK',
             no: 'CANCEL',
-            type: 'blue',
+            type: 'info',
             onyes: () => {},
             onno: () => {}
         }, options);
@@ -17,8 +17,7 @@ const popup = {
         const html = (`
             <div class="Popup">
                 <div class="box">
-                    <div class="msg">${options.msg}</div>
-                    <div class="field"></div>
+                    <div class="msg">${options.msg}</div
                     <div class="buttons">
                         <button class="btn confirm no">${options.no}</button>
                         <button class="btn confirm yes">${options.yes}</button>
