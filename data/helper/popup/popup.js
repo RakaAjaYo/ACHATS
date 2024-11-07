@@ -1,7 +1,7 @@
 const popup = {
     prompt(options) {
         options = Object.assign({}, {
-            msg: '',
+            msg: 'Mohon Maaf Jika UI nya Ada Yg Rusak, Kami Dari Pihak Team ACHATS Meminta Maaf Yang Se Besar Besarnya Atas Ketidak nyamanan Kalian Para Pengguna, Sekali Lagi Kami Dari Pihak Team Meminta Maaf, Terimakasih.',
             max: 0,
             val: '',
             placeholder: 'Type Here..',
