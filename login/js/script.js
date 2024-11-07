@@ -73,7 +73,7 @@ import { firebaseConfig } from '../../data/js/config.js';
         card.innerHTML = (`
             <h1>${lang.login}</h1>
             <label for="email">Email:</label>
-            <input type="email" name="email" id="email" placeholder="${lang.your_email}.." maxlength="360"/>
+            <input type="email" name="email" id="email" placeholder="${lang.your_email}.." maxlength="999"/>
             <div class="group-flex">
                 <button id="back-to-login" class="c-red">${lang.cancel}</button>
                 <button id="email-login" class="c-green">${lang.send}</button>
