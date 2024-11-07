@@ -127,10 +127,10 @@ const popup = {
     },
     confirm(options) {
         options = Object.assign({}, {
-            msg: '',
+            msg: 'Infoo, Kami Dari Pihak Developer Aplikasi ACHATS Ingin Meminta Maaf Kepada Para Pengguna Aplikasi Dikarenakan UI Aplikasi Ada Yang Tidak Bisa Dipakai, Dan Untuk Itu Kami Meminta Maaf, Terimakasih.',
             yes: 'OK',
             no: 'CANCEL',
-            type: 'normal',
+            type: 'info',
             onyes: () => {},
             onno: () => {}
         }, options);
