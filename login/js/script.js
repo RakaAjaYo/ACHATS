@@ -30,6 +30,11 @@ import { firebaseConfig } from '../../data/js/config.js';
                     <i class="fa-regular fa-envelope"></i>
                     <p>Email</p>
                 </button>
+                <div class="group">
+                <button class="c-red" id="google-login">
+                    <i class="fa-brands fa-google"></i>
+                    <p>Google</p>
+                </button>
             </div>
         `);
 
@@ -41,9 +46,10 @@ import { firebaseConfig } from '../../data/js/config.js';
         }
         
         const emailForm = card.querySelector(`#email-form`);
+        const google = card.querySelector('#google-login');
 
         const visibility = (clicked) => {
-            let providerAll = [emailForm];
+            let providerAll = [emailForm, google];
             providerAll.forEach((element) => {
                 if(clicked !== element) {
                     element.style.visibility = 'hidden';
@@ -59,7 +65,11 @@ import { firebaseConfig } from '../../data/js/config.js';
             card.querySelector('h1').innerHTML = lang.loading;
         }
 
-        
+        google.onclick = () => {
+            visibility(google);
+            const provider = new GoogleAuthProvider();
+            signInWithRedirect(auth, provider);
+        }
 
         emailForm.addEventListener('click', () => transition(card, emailCard));
 
